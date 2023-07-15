@@ -419,6 +419,8 @@ private:
 };
 ```
 
+
+
 ## Memo : If you want to implement move constructor and move assignment operator in general
 Too long lol
 Well if I just made it have std::vector not a pointer of std::vector, it wouldn't be troublesome.

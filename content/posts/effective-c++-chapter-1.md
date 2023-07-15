@@ -5,35 +5,43 @@ draft: true
 ---
 
 # Chapter 1
-It's been a year since I have started using C++ at work, so this would be good timing to read one of the most famous books in C++ "Effective C++".
-Even though there is a book called "Modern Effective C++", it is not a new version of this old "Effective C++"; thus, I am going to understand what the author wants to express and interpret it in a modern way of C++.
+It's been a year since I have started using C++ at work, so I believe this would be good timing to read one of the most famous books in C++ **Effective C++**.
 
-I am writing this articel in 2023, which means that we will be able to use C++23 soon; however, Effective C++ was written before C++11 published so there are many things that I have to translate from the classsic C++ to the modern C++.
+There is a simillar book called **Effective Modern C++** which is written by the same author, but it is not a precise new version of this old **Effective C++** for some reasons; thus, I am trying to interpret what the author wanted to express in **Effective C++** by using examples that are based on C++14/17/20.
 
-Also, I will totally abandon old C++(before C++11). Instead, I am trying to compensate those classic parts with the modern way of C++.
+This is just a personal blog, so don't take it seriously lol.
+
+***
 
 ## Item 1 : View C++ as a federation of languages.
-Nothing to mention....well what you have to know is that there are ways which are C, OOP C++, Template C++, and STL.
+Nothing to mention....well what you have to know is that there are several aspects in C++, which are C, OOP C++, Template C++, and STL.
+
+***
 
 ## Item 2 : Prefer consts, enums, and inlines to #defines.
 It starts from "Prefer the compier to the preprocessor".
 
-```C++
+```cpp
 #define ASPECT_RATIO 1.653 // NO WAY lol
 ```
 
-```C++
+```cpp
 const double ASPECT_RATIO = 1.653; // OK what about name convention?
 ```
 
-The book recommend that we should use "inline". Actually this might be wrong now, because compiler is way smarter than us nowadays, so let compiler decide when to use inline by chooseing optimization option right?
+The book recommend that we should use "inline". Actually this might be wrong now, because compiler is way smarter than us nowadays, so let compiler decide when to use inline by chooseing optimization option :)
+
+***
 
 ## Item 4 : Make sure that objects are initialized before they’re used.
 Uninitialized objects can exist in C++, and reading uninitialized values yields undefined behavior.
+
 !!! Naturally, global static object has an issue of initialization in general in C++, so let's not use it.
+
 Instead, let's use local static object like we do when we use singleton design pattern ;).
 
-```C++
+
+```cpp
 Singleton& getInstance()
 {
     static Singleton instance;

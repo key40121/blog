@@ -3,17 +3,16 @@ title = "key40121"
 theme = "hugo-coder"
 languagecode = "en"
 defaultcontentlanguage = "en"
-
 paginate = 20
-
-disqusShortname = "yourdiscussshortname"
+enableEmoji = true
 
 [markup.highlight]
-style = "github-dark"
+noClasses = true
+style = "xcode-dark"
 
 [params]
   author = "Taichi Ichisawa"
-  info = "C++ developer"
+  info = "Software Enthusiast"
   description = "Taichi's personal blog"
   keywords = "blog,developer,personal"
   avatarurl = "images/zapp.png"
@@ -23,13 +22,16 @@ style = "github-dark"
   favicon_32 = "/img/favicon-32x32.png"
   favicon_16 = "/img/favicon-16x16.png"
 
-  since = 2023
+  since = 2022
 
   enableTwemoji = true
 
   colorScheme = "auto"
   hidecolorschemetoggle = false
 
+  maxSeeAlsoItems = 5
+
+# Custom CSS, No Need so far.
   # customCSS = ["css/custom.css"]
   # customSCSS = ["scss/custom.scss"]
   # customJS = ["js/custom.js"]
@@ -45,17 +47,13 @@ style = "github-dark"
   name = "Github"
   icon = "fa fa-github fa-2x"
   weight = 1
-  url = "https://github.com/johndoe/"
+  url = "https://github.com/key40121"
 [[params.social]]
-  name = "Gitlab"
-  icon = "fa fa-gitlab fa-2x"
+  name = "LinkedIn"
+  icon = "fa fa-2x fa-linkedin"
   weight = 2
-  url = "https://gitlab.com/johndoe/"
-[[params.social]]
-  name = "Twitter"
-  icon = "fa fa-twitter fa-2x"
-  weight = 3
-  url = "https://twitter.com/johndoe/"
+  url = "https://www.linkedin.com/in/taichi-ichisawa-aa54231b2/"
+
 
 # Menu links
 [[menu.main]]
