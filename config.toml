@@ -1,4 +1,4 @@
-baseurl = "http://www.example.com"
+baseurl = "https://key40121.github.io/"
 title = "key40121"
 theme = "hugo-coder"
 languagecode = "en"
@@ -55,12 +55,15 @@ style = "xcode-dark"
   url = "https://www.linkedin.com/in/taichi-ichisawa-aa54231b2/"
 
 
-# Menu links
-[[menu.main]]
-  name = "Blog"
-  weight = 1
-  url  = "posts/"
-[[menu.main]]
-  name = "About"
-  weight = 2
-  url = "about/"
+[languages.en]
+languageName = ":uk:"
+
+[[languages.en.menu.main]]
+name = "About"
+weight = 1
+url = "about/"
+
+[[languages.en.menu.main]]
+name = "Blog"
+weight = 2
+url = "posts/"
