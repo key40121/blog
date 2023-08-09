@@ -1,8 +1,19 @@
----
-title: "Test Post"
-date: 2023-06-05T16:15:12Z
-draft: true
----
++++
+authors = ["Taichi Ichisawa"]
+title = "Test Post"
+date = "2022-12-30"
+description = "Sample"
+tags = [
+    "C++",
+    "Effective C++",
+]
+categories = [
+    "C++",
+    "books",
+]
+series = ["Themes Guide"]
+aliases = ["migrate-from-jekyl"]
++++
 
 # Post
 I am trying to use hugo, and figuring out how to use.

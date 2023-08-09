@@ -1,14 +1,24 @@
----
-title: "Effective C++ Chapter 2"
-date: 2023-06-20T04:55:58Z
-draft: true
----
++++
+authors = ["Taichi Ichisawa"]
+title = "Effective C++ chapter 2"
+date = "2023-05-11"
+description = "Effective C++ chapter 2"
+tags = [
+    "C++",
+    "Effective C++",
+]
+categories = [
+    "C++",
+    "books",
+]
++++
 
 # chapter 2
 ## Constructors, Destructors, and Assignment Operators.
 **Keep in mind**
 Move semantics were introduced from C++11; therefore, there is no statements of move semantics at all in this book.
 
+***
 ## Item 5 : Know what functions C++ silently writes and calls.
 This item is all about default constructos and destructors.
 so...
@@ -44,7 +54,7 @@ public:
 
 ```
 
-Ok. The problem arises when your object has a reference or pointer.(Don't know why it is not mentioned in the book.)
+Ok. The problem arises when your object has a reference or pointer.
 
 For example,
 ```C++
@@ -63,13 +73,14 @@ void bug_func(Test t) // copy constructor
 
 ```
 
-When you call declare this class and call bug_func the program will crash because of  **shallow copy or member-wise ccopy**.
+When you declare this class and call bug_func, the program will crash because of  **shallow copy or member-wise copy**.
 
-Basically, both default copy constructor and copy assignment do shallow copy not deep copy.
-So, when you have a raw pointer, you need to implement a copy constructo with deep copy by yourself.
+Basically, both default copy constructor and copy assignment do **shallow copy not deep copy.**
+
+So, when you have a raw pointer, you need to implement a copy constructor with deep copy.
 
 ```C++
-// copy constructor with shallo copy
+// copy constructor with shallo1 copy
 Test(const Test &source)
     :val(source.val)
 {
@@ -85,7 +96,7 @@ Test(const Test & source)
 }
 ```
 
-From c++14, we can use std::unique_ptr instead of raw pointer, so here I am showing an examp;e by using a class with unique_ptr.
+From C++14, we can use std::unique_ptr instead of raw pointer, so here I am showing an example by using a class with unique_ptr.
 
 ```C++
 #include <iostream>
@@ -153,15 +164,13 @@ int main()
 Refs :
 https://medium.com/@seanoughton/c-copy-constructor-45df7ab5b047
 
-
+***
 ## Item 6 : Explicitly disallow the use of compiler generated functions you do not want.
-
-In this chapter, the book explains
 
 From C++11, we can use a new form of function declaration which allows us to append the "=default" or "=delete" specifier to the end of a function declaration to declare that function as an explicitly defaulted function.
 
 The book tries to declare constructors that should not be calles as private so that anyone who calls it would get an error at link-time.
-However, since we can use "=delete" specifier from c++11, we don't need to follow the way the book does.
+However, since we can use "=delete" specifier from C++11, we don't need to follow the way the book does.
 The most obvious example would be singleton where you have to delete all copy and move construtors and copy and move assignments.
 
 ```C++
@@ -191,10 +200,12 @@ int main()
 }
 ```
 
+***
 ## Item 7 : Declare destructors virtual in polymorphic base classes.
 This item is all about just giving a polymorphic base class a virtual destructor, and classes not designed to be base classes or not designe to be used polymorphically should not declare virtual destructors.
 
-Let's say...
+The way virtual treats in C++ will be explained later in this book, but basically if you don't use the specifier "virtual", it would mean you are overwriting non-virtual function in your derived class which is very dangerous.
+
 ```C++
 class Base
 {
@@ -230,6 +241,8 @@ int main()
 
 ```
 
+***
+## Factory method.
 This book dosen't deal with the problem that can be arise if we use raw pointer in factory method.
 So I implemented a factory method with std::unique_ptr.
 
@@ -287,16 +300,21 @@ int main()
 
 ```
 
+***
 ## Item 8 : Prevent exceptions from leaving destructors.
 
-Nothing to mention...
-Just not make your destructor throw exception.
+Just not make your destructor throw exception because stack unwinding would happen and it goes up to stack if it cannnot catch.
 
+***
 ## Item 9 : Never call virtual functions during construction or destruction.
 
 It says that you have to distinguish whether derived class or base class you are dealing with.
-Thus, don't call virtual functions during construction or destruction because you cannot get the result you expected because of base constructor and destructor.
 
+When constructing, base class is constructed first so it cannot reach any functions or data members in derived class.
+
+Destructor acts the same way constructo does.
+
+***
 ## Item 10 : Have assignment operators return a reference to *this.
 
 Assigment has to return a reference to its left-hand argument as a convention.
@@ -314,8 +332,9 @@ public:
 };
 
 ```
-Well, this is just a convetion so we actually can violate this convention from compiler's point of view.
+Well, this is just a convetion so we actually can violate this convention which is not recommended though.
 
+***
 ## Item 11 : Handle assignment to self in operator=
 When you use copy assignment, you have to be careful with self assignment in addition to shallow copy. Let's say we have class with raw pointer, and if it is assigned with the same instance, it should not delete the resource it has.
 
@@ -324,7 +343,6 @@ class Widget
 {
 private:
     Bitmap *pb;
-
 };
 
 // This is not okay
@@ -349,20 +367,12 @@ Widget &  Widget::operator=(const Widget& rhs)
 
 ```
 
+***
 ## Item 12 : Copy all parts of an object.
-Only copy constructr and copy assignment operator can copy objects; hence, they should be called copying functions...Okay.
 
-When you declare copying functions, you have to be very careful because compiler
+In derived class constructor, if you omit base's class constructor, default constrctor will be called for them.
 
-I feel like I've encounterd the same theme already, which is shallow copy or deep copy.  Basically, as for this item, what the book tried to say is that you have to copy all objects.
-
-If I sumarilze all things you have to take care when you deal with copy constuctor and copy assignment are
-1. Copy all of an object's data members.
-2. Be careful to implement copy functionality when there is a raw pointer.
-
-So if there is no raw pointers, this test code I created below is fine at all.
-
-
+This is a sample code made by me.
 
 ```C++
 class Customer
@@ -398,7 +408,6 @@ int main()
 
 ```
 
-When you deal with inheritance.
 ```C++
 class PriorityCustomer : public Customer
 {
@@ -420,9 +429,8 @@ private:
 ```
 
 
-
 ## Memo : If you want to implement move constructor and move assignment operator in general
-Too long lol
+This is too long lol
 Well if I just made it have std::vector not a pointer of std::vector, it wouldn't be troublesome.
 ```C++
 #include <iostream>

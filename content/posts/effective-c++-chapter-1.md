@@ -1,8 +1,17 @@
----
-title: "Effective C++ Chapter 1"
-date: 2023-06-11T18:23:32Z
-draft: true
----
++++
+authors = ["Taichi Ichisawa"]
+title = "Effective C++ chapter 1"
+date = "2023-05-10"
+description = "Sample"
+tags = [
+    "C++",
+    "Effective C++",
+]
+categories = [
+    "C++",
+    "books",
+]
++++
 
 # Chapter 1
 It's been a year since I have started using C++ at work, so I believe this would be good timing to read one of the most famous books in C++ **Effective C++**.

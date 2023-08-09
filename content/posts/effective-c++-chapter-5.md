@@ -1,15 +1,18 @@
 +++
-draft = true
-date = 2023-07-16T13:25:43Z
-title = ""
-description = ""
-slug = ""
-authors = []
-tags = []
-categories = []
-externalLink = ""
-series = []
+authors = ["Taichi Ichisawa"]
+title = "Effective C++ chapter 5"
+date = "2023-06-10"
+description = "Effective C++ chapter 5"
+tags = [
+    "C++",
+    "Effective C++",
+]
+categories = [
+    "C++",
+    "books",
+]
 +++
+
 
 # Chapter 5
 
@@ -113,7 +116,7 @@ Let me create a simple **copy and swap idiom**.
 ***
 
 ## Item 30 : Understand the ins and outs of inlining.
-Need to think about 
+Need to think about
 
 
 ***

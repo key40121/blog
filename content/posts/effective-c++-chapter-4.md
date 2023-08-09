@@ -1,14 +1,16 @@
 +++
-draft = true
-date = 2023-07-16T13:25:37Z
-title = ""
-description = ""
-slug = ""
-authors = []
-tags = []
-categories = []
-externalLink = ""
-series = []
+authors = ["Taichi Ichisawa"]
+title = "Effective C++ chapter 4"
+date = "2023-05-20"
+description = "Effective C++ chapter 4"
+tags = [
+    "C++",
+    "Effective C++",
+]
+categories = [
+    "C++",
+    "books",
+]
 +++
 
 # Chapter 4
@@ -25,7 +27,6 @@ public:
 };
 
 // This is not wrong but easy to pass a wrong argument.
-// So
 
 class Month
 {
@@ -41,7 +42,7 @@ Data(Month::Mar(), 30, 1995);
 
 ```
 
-## ITem 19 : Treat class design as type design.
+## Item 19 : Treat class design as type design.
 
 When you create a class, you really have to be careful with implementations.
 
@@ -49,7 +50,7 @@ When you create a class, you really have to be careful with implementations.
 
 ## Item 20 : Prefer pass-by-reference-to-const to pass-by-value.
 
-I think pass-by-reference-to-const is something almost anyone knows.
+I think this item is now too popular enough that everyone uses.
 
 ```cpp
 
@@ -62,7 +63,7 @@ bool something(const Test& test);
 
 ```
 
-I didn't know what **slicing problem** is though.
+There is an explanation about **Slicing problem** as well.
 I implemented a simple example.
 Basically, if you pass a derived class object as a base class object, the base class copy constructor is called and derived class part will be sliced off.
 
