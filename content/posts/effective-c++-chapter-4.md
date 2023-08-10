@@ -115,6 +115,7 @@ int main()
 
 ```
 
+***
 ## Item 21 : Don't try to return a reference when you must return an object.
 
 ```cpp
@@ -186,3 +187,21 @@ When you run this, you'd see only "ctr" and "dtr" thanks to RVO.
 
 Refs : https://shaharmike.com/cpp/rvo/
 
+***
+
+## Item 22 : Declare data members private.
+Just don't use data members as an interface.
+
+```cpp
+
+```
+
+***
+
+## Item 23 : Prefer non-member functions when type conversions should apply to all parameters.
+
+***
+
+## Item 24 : Consider support for a non-throwing swap.
+
+***

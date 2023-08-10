@@ -16,9 +16,11 @@ categories = [
 
 # Chapter 5
 
+***
+
 ## Item 27 : Minimize casting.
 
-Syntax of cast in C++.
+Use C++ style casting whenever possible. These are four types of casting in C++.
 
 ```cpp
 
@@ -55,6 +57,7 @@ int x = static_cast<int>a; // 10;
 ```
 
 In general, using dynamic_cast is not a good practice.
+
 If you encounter the situation where you have to use dynamic_cast, you should reconsider the design.
 
 
@@ -62,6 +65,43 @@ If you encounter the situation where you have to use dynamic_cast, you should re
 
 ## Item 28 : Avoid returning "handles" to object internals.
 
+Having a member function returining handles(references, pointers, or iterators) to object internals is not something you want to do in C++.
+
+If you define a member function like this, it allows clients to modify object internals.
+
+```cpp
+
+struct RectData
+{
+    Point ulhc;
+    Point lrhc;
+}
+
+int main()
+{
+
+class Rec
+{
+public:
+    Point& upperLeft() const {return pData->ulhc;}
+};
+
+}
+
+```
+
+Even if you make it return const, it still has a problem that can cause **dangling pointer**.
+
+```cpp
+const int& f()
+{
+    std::vector<int> v = {1, 2, 3};
+    return v.front();
+}
+
+```
+
+***
 
 ## Item 29 : Strive for exception-safe code.
 Exception-safe... very important.
