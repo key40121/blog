@@ -192,7 +192,17 @@ Refs : https://shaharmike.com/cpp/rvo/
 ## Item 22 : Declare data members private.
 Just don't use data members as an interface.
 
+Advantages
+1. Affords fine-grained access control.
+2. Offers class authors implementation flexibility.
+3. Limit the access point to data members.
+
 ```cpp
+template <typename T, typename U>
+T& get(std::pair<T, U>& p)
+{
+    return p.first;
+}
 
 ```
 
@@ -200,8 +210,74 @@ Just don't use data members as an interface.
 
 ## Item 23 : Prefer non-member functions when type conversions should apply to all parameters.
 
+```cpp
+
+template <typename T>
+class C
+{
+    T x;
+    void A();
+    void B();
+    void C();
+    void D()
+    {
+        A(); B(); C();
+    }
+}
+
+D(T& classC)
+{
+    classC.A();
+    classC.B();
+    classC.C();
+}
+
+```
+The question is which is better code.
+There is a misunderstanding that the functions should be bundled together according to object-oriented principle.
+It is no coreccct and object-oriented principles dictate that data should be as **encapsulated** as possible.
+
+Get back to the question which is better, actually non-member function is better in terms of encapsulation because it won't increase the number of functions that can access the private parts of the class.
+
+
+***When your function has multiple public member functions, you can have non-frinend non-member function to implement them***
+
 ***
 
-## Item 24 : Consider support for a non-throwing swap.
+## Item 24 : Declare non-member functions when type conversions should apply to all parameters.
+...
+***
+
+## Item 25 : Consider support for a non-throwing swap.
+
+The simplest swap implementation.
+```cpp
+
+template <typename T>
+void swap(T& a, T& b)
+{
+    T temp(a);
+    a = b;
+    b = temp;
+}
+
+namespace swapswap
+{
+
+template <typename T>
+class Widget
+{
+    T* x;
+    void swap(Widget& rhs)
+    {
+        using std::swap;
+        swap(this->x, rhs.x);
+    }
+
+}
+}
+
+
+```
 
 ***
