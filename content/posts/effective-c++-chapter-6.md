@@ -1,14 +1,16 @@
 +++
-draft = true
-date = 2023-07-16T13:25:47Z
-title = ""
-description = ""
-slug = ""
-authors = []
-tags = []
-categories = []
-externalLink = ""
-series = []
+authors = ["Taichi Ichisawa"]
+title = "Effective C++ chapter 6"
+date = "2023-06-13"
+description = "Effective C++ chapter 6"
+tags = [
+    "C++",
+    "Effective C++",
+]
+categories = [
+    "C++",
+    "books",
+]
 +++
 
 
@@ -18,7 +20,6 @@ This chapter is all about OOP, and some techniques which are unique to C++.
 
 There are several keywords that are associated with OOP in C++, so I'd like to define those keywords so that I won't be confused with terms when I use them.
 
-
 ***
 ## Item 32 : Make sure public inheritance models "is-a".
 
@@ -27,6 +28,44 @@ C++ dose not make sure that the hierarchy of inheritance is correctly implemente
 ***
 
 ## Item 33 : Avoid hiding inherited names.
+
+Like global and local scopes, class hierarhy has scope too.
+
+When we are inside a derived class member function and we refer to something in a base class, compiler will look for it from a derived class's scope,
+
+```cpp
+
+class Base
+{
+public:
+    virtual void f() {}
+    void f(int) {}
+};
+
+class Derived : public Base
+{
+public:
+    void f() override
+    {
+        f(0); // Compile Error!!
+    }
+};
+
+// You have to do like this
+class Derived : public Base
+{
+public:
+    using Base::f;
+    void f() override
+    {
+        f(0); // OK
+    }
+};
+
+```
+
+One thing worth mentioning is that even thought the functions in the base and derived classes take different parameter types, derived class function hides the function of base class.
+
 
 ***
 
@@ -107,11 +146,6 @@ private:
     std::unique_ptr<HealthCalcFunc> healthCalucFunc;
 };
 
-int main()
-{
-    return 0;
-}
-
 ```
 
 As for std::function it would be...
@@ -146,11 +180,58 @@ Virtually functions are dynamically bound, but default parameter values are stat
 
 layering, containment, aggregation, and composition..They have the same meaning in the context of software.
 
+If you want to add some functionalities to std::list for instance,
+don't do like this
+
+```cpp
+
+template <typename T>
+class OriginalList : public std::list<T>
+{
+
+};
+
+```
+This can be easily wrong since you are not sure if your original class can have the relationship "is-a".
+So instead of doing this way, you can use composition.
+
+```cpp
+template <tyypename T>
+class OriginalList
+{
+public:
+    bool member(const T& item) const;
+    std::size_t size() const;
+    void insert(const T& item);
+    void remove(const T& item);
+
+private:
+    std::list<T> rep; // List
+};
+
+template <typename T>
+bool OriginalList<T>::member(const T& item) const
+{
+    return std::find(rep.begin(), rep.end(), item) != rep.end();
+}
+
+template <typename T>
+void OriginalList<T>::insert(const T& item)
+{
+    req.push_back(item);
+}
+
+/// ....
+```
 
 ***
 
 ## Item 39 : Use private inheritance judiciously.
 
+Nothing
+
 ***
 
 ## Item 40 : Use multiple inheritance judiciously.
+
+Nothing
