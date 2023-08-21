@@ -16,3 +16,8 @@ series = []
 ## Item 41 : Understand implicit
 
 Syntax of cast in C++.
+
+***
+
+## Item 42 : Understand the two meanings of typename.
+
