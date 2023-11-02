@@ -1,7 +1,7 @@
 +++
 authors = ["Taichi Ichisawa"]
 title = "Unique Pointer Usage"
-date = "2023-10-4"
+date = "2023-10-04"
 description = "Sample"
 tags = [
     "C++",
