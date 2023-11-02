@@ -1,6 +1,6 @@
 +++
 authors = ["Taichi Ichisawa"]
-title = "Smart Pointer"
+title = "Unique Pointer Usage"
 date = "2023-10-4"
 description = "Sample"
 tags = [
