@@ -1,7 +1,7 @@
 +++
 authors = ["Taichi Ichisawa"]
 title = "Effective Modern C++ chapter 1"
-date = "2023-10-6"
+date = "2023-10-06"
 description = "Effective Modern C++ chapter 1"
 tags = [
     "C++",
