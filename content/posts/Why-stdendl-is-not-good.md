@@ -2,7 +2,7 @@
 authors = ["Taichi Ichisawa"]
 title = "Why std::endl is not good in terms of performance"
 date = "2024-08-02"
-description = ""
+description = "Sample"
 tags = [
     "C/C++",
 ]
@@ -10,7 +10,6 @@ categories = [
     "C/C++",
 ]
 +++
-
 
 ***
 
